@@ -1,11 +1,11 @@
-﻿using Code_Generator.Views;
+﻿using Chord_Generator.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 using Prism.Unity;
 using System.Windows;
 
-namespace Code_Generator
+namespace Chord_Generator
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Code_Generator.ViewModels
+namespace Chord_Generator.ViewModels
 {
     public class PlayViewModel : BindableBase
     {
