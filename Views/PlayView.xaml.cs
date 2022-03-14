@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Code_Generator.Views
+namespace Chord_Generator.Views
 {
     /// <summary>
     /// Interaction logic for PlayView

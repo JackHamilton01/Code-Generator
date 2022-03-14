@@ -1,6 +1,6 @@
 ﻿using Prism.Mvvm;
 
-namespace Code_Generator.ViewModels
+namespace Chord_Generator.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Code_Generator.Models
+namespace Chord_Generator.Models
 {
     public enum Chord
     {

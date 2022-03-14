@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Code_Generator
+namespace Chord_Generator
 {
     public static class RegionNames
     {

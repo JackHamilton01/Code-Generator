@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code Generator", "Code Generator.csproj", "{7CDC0EA3-A612-4622-8E90-622D56B656BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chord Generator", "Chord Generator.csproj", "{7CDC0EA3-A612-4622-8E90-622D56B656BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

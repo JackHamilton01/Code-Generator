@@ -1,5 +1,5 @@
-﻿using Code_Generator.ViewModels;
-using Code_Generator.Views;
+﻿using Chord_Generator.ViewModels;
+using Chord_Generator.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity;
 
-namespace Code_Generator
+namespace Chord_Generator
 {
     public class Controller : IModule
     {
