@@ -38,6 +38,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,7 +59,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Models\Chord.cs" />
     <Compile Include="RegionNames.cs" />
+    <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\Chords.cs" />
+    <Compile Include="Services\Settings.cs" />
     <Compile Include="ViewModels\PlayViewModel.cs" />
     <Compile Include="Views\PlayView.xaml.cs">
       <DependentUpon>PlayView.xaml</DependentUpon>
@@ -70,7 +77,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Enums\Chord.cs" />
+    <Compile Include="Enums\ChordEnum.cs" />
     <Compile Include="Models\PlayBackSpeed.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -110,6 +117,12 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.4.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
