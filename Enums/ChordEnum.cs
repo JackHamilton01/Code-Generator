@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chord_Generator.Models
 {
-    public enum Chord
+    public enum ChordEnum
     {
         C,
         Cm,

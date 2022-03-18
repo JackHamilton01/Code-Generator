@@ -81,6 +81,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -97,7 +98,7 @@
                 FontFamily="{DynamicResource MaterialDesignFont}"
                 FontSize="80"
                 Style="{DynamicResource MaterialDesignTitleTextBlock}"
-                Text="Cm" />
+                Text="{Binding ActiveChord}" />
         </materialDesign:Card>
 
 
@@ -119,8 +120,14 @@
                 Template="{StaticResource soundButtonTemplate}" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Button Content="Start" Style="{StaticResource ActionButtonStyle}" />
+        <Image Grid.Column="1"
+               Grid.Row="2"
+               Source="{Binding ActiveImageSource}"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Button Content="Start" 
+                    Style="{StaticResource ActionButtonStyle}" 
+                    Command="{Binding StartCommand}"/>
             <TextBlock Style="{StaticResource TimerStyle}" Text="test" />
         </StackPanel>
     </Grid>
