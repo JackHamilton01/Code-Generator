@@ -29,7 +29,8 @@ namespace Chord_Generator.Services
                 new Chord(chordName: "Gm", imagePath: FileHelper.GetPath("Gm.jpg", imageFolder)),
                 new Chord(chordName: "A", imagePath: FileHelper.GetPath("A.jpg", imageFolder)),
                 new Chord(chordName: "Am", imagePath: FileHelper.GetPath("Am.jpg", imageFolder)),
-                new Chord(chordName: "B", imagePath: FileHelper.GetPath("Bm.jpg", imageFolder)),
+                new Chord(chordName: "B", imagePath: FileHelper.GetPath("B.jpg", imageFolder)),
+                new Chord(chordName: "Bm", imagePath: FileHelper.GetPath("Bm.jpg", imageFolder)),
             };
         }
 
@@ -52,6 +53,20 @@ namespace Chord_Generator.Services
         public string GetImageSource(string imageName)
         {
             return Path.Combine(Directory.GetCurrentDirectory() + imageFolder, imageName);
+        }
+
+        public string GetNextActiveChordName(Chord chord, List<Chord> chordList)
+        {
+            int nextActiveChordIndex = chordList.IndexOf(chord);
+
+            if (chord == chordList.Last())
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return chordList[nextActiveChordIndex + 1].ChordName;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Chord_Generator.ViewModels
     {
         public string ActiveChord { get; set; }
         public string ActiveImageSource { get; set; }
+        public string NextActiveChord { get; set; }
 
         public List<Chord> ChordList { get; set; }
 
@@ -32,6 +33,7 @@ namespace Chord_Generator.ViewModels
 
             ActiveChord = ChordList.FirstOrDefault().ChordName;
             ActiveImageSource = ChordList.FirstOrDefault().ImagePath;
+            NextActiveChord = ChordList[1].ChordName;
         }
 
         private async void Start()
@@ -42,8 +44,14 @@ namespace Chord_Generator.ViewModels
             {
                 ActiveChord = chord.ChordName;
                 ActiveImageSource = chord.ImagePath;
+
+                NextActiveChord = chords.GetNextActiveChordName(chord, ChordList);
                 await Task.Delay(5500);
             }
+
+            await audioService.StopAudio();
+
+            ChordList = chords.CreateRandomiseChordList();
         }
     }
 }
