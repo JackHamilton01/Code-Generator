@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,6 +35,7 @@ namespace Chord_Generator.ViewModels
             ActiveChord = ChordList.FirstOrDefault().ChordName;
             ActiveImageSource = ChordList.FirstOrDefault().ImagePath;
             NextActiveChord = ChordList[1].ChordName;
+
         }
 
         private async void Start()

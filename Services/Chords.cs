@@ -23,6 +23,7 @@ namespace Chord_Generator.Services
                 new Chord(chordName: "Dm", imagePath: FileHelper.GetPath("Dm.jpg", imageFolder)),
                 new Chord(chordName: "E", imagePath: FileHelper.GetPath("E.jpg", imageFolder)),
                 new Chord(chordName: "Em", imagePath: FileHelper.GetPath("Em.jpg", imageFolder)),
+                new Chord(chordName: "F", imagePath: FileHelper.GetPath("F.jpg", imageFolder)),
                 new Chord(chordName: "Fm", imagePath: FileHelper.GetPath("Fm.jpg", imageFolder)),
                 new Chord(chordName: "F#m", imagePath: FileHelper.GetPath("F#m.jpg", imageFolder)),
                 new Chord(chordName: "G", imagePath: FileHelper.GetPath("G.jpg", imageFolder)),
