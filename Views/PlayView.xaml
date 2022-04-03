@@ -4,6 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:local="clr-namespace:Chord_Generator.Enums"
+    xmlns:extensions="clr-namespace:Chord_Generator.Extensions"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     prism:ViewModelLocator.AutoWireViewModel="True">
 
     <UserControl.Resources>
@@ -81,14 +84,14 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <materialDesign:Card
             Grid.Row="0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="2"
             MaxHeight="300"
             Margin="16"
             Padding="32">
@@ -100,6 +103,21 @@
                 Style="{DynamicResource MaterialDesignTitleTextBlock}"
                 Text="{Binding ActiveChord}" />
         </materialDesign:Card>
+        
+        <materialDesign:Card
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            MaxHeight="300"
+            Margin="16"
+            Padding="32">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="{DynamicResource MaterialDesignFont}"
+                FontSize="80"
+                Style="{DynamicResource MaterialDesignTitleTextBlock}"
+                Text="{Binding NextActiveChord}" />
+        </materialDesign:Card>
 
 
         <StackPanel
@@ -107,17 +125,11 @@
             Grid.Column="2"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Button
-                Height="50"
-                VerticalAlignment="Top"
-                Tag="{materialDesign:PackIcon Kind=VolumeHigh}"
-                Template="{StaticResource PlayBackSpeedButtonTemplate}" />
-
-            <Button
-                Height="50"
-                VerticalAlignment="Top"
-                Tag="{materialDesign:PackIcon Kind=VolumeHigh}"
-                Template="{StaticResource soundButtonTemplate}" />
+            <ComboBox ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type local:PlayBackSpeed}}}"
+                      Width="200"
+                      Margin="15"
+                      Height="30"
+                      Foreground="White"/>
         </StackPanel>
 
         <Image Grid.Column="1"
@@ -128,7 +140,8 @@
             <Button Content="Start" 
                     Style="{StaticResource ActionButtonStyle}" 
                     Command="{Binding StartCommand}"/>
-            <TextBlock Style="{StaticResource TimerStyle}" Text="test" />
+            <TextBlock Style="{StaticResource TimerStyle}"
+                       Text="{Binding Timer}" />
         </StackPanel>
     </Grid>
 </UserControl>

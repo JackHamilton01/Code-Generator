@@ -23,13 +23,15 @@ namespace Chord_Generator.Services
                 new Chord(chordName: "Dm", imagePath: FileHelper.GetPath("Dm.jpg", imageFolder)),
                 new Chord(chordName: "E", imagePath: FileHelper.GetPath("E.jpg", imageFolder)),
                 new Chord(chordName: "Em", imagePath: FileHelper.GetPath("Em.jpg", imageFolder)),
+                new Chord(chordName: "F", imagePath: FileHelper.GetPath("F.jpg", imageFolder)),
                 new Chord(chordName: "Fm", imagePath: FileHelper.GetPath("Fm.jpg", imageFolder)),
                 new Chord(chordName: "F#m", imagePath: FileHelper.GetPath("F#m.jpg", imageFolder)),
                 new Chord(chordName: "G", imagePath: FileHelper.GetPath("G.jpg", imageFolder)),
                 new Chord(chordName: "Gm", imagePath: FileHelper.GetPath("Gm.jpg", imageFolder)),
                 new Chord(chordName: "A", imagePath: FileHelper.GetPath("A.jpg", imageFolder)),
                 new Chord(chordName: "Am", imagePath: FileHelper.GetPath("Am.jpg", imageFolder)),
-                new Chord(chordName: "B", imagePath: FileHelper.GetPath("Bm.jpg", imageFolder)),
+                new Chord(chordName: "B", imagePath: FileHelper.GetPath("B.jpg", imageFolder)),
+                new Chord(chordName: "Bm", imagePath: FileHelper.GetPath("Bm.jpg", imageFolder)),
             };
         }
 
@@ -52,6 +54,20 @@ namespace Chord_Generator.Services
         public string GetImageSource(string imageName)
         {
             return Path.Combine(Directory.GetCurrentDirectory() + imageFolder, imageName);
+        }
+
+        public string GetNextActiveChordName(Chord chord, List<Chord> chordList)
+        {
+            int nextActiveChordIndex = chordList.IndexOf(chord);
+
+            if (chord == chordList.Last())
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return chordList[nextActiveChordIndex + 1].ChordName;
+            }
         }
     }
 }

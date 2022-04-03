@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller.cs" />
+    <Compile Include="Enums\PlayBackSpeed.cs" />
+    <Compile Include="Extensions\EnumBindingSourceExtension.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Models\Chord.cs" />
     <Compile Include="RegionNames.cs" />
@@ -78,7 +80,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\ChordEnum.cs" />
-    <Compile Include="Models\PlayBackSpeed.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

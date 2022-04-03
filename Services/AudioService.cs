@@ -11,7 +11,7 @@ namespace Chord_Generator.Services
     public class AudioService
     {
         private string audioFolder = @"\Audio\";
-        private string trainingBeatFileName = "Trainingbeat.WAV";
+        private string trainingBeatFileName = "TrainingBeatShort.WAV";
 
         SoundPlayer soundPlayer;
 
@@ -23,6 +23,11 @@ namespace Chord_Generator.Services
         public async Task PlayAudio()
         {
             await Task.Run(() => soundPlayer.PlayLooping());
+        }
+
+        public async Task StopAudio()
+        {
+            await Task.Run(() => soundPlayer.Stop());
         }
     }
 }
