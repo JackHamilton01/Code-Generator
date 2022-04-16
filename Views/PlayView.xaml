@@ -2,10 +2,10 @@
     x:Class="Chord_Generator.Views.PlayView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:extensions="clr-namespace:Chord_Generator.Extensions"
+    xmlns:local="clr-namespace:Chord_Generator.Enums"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:local="clr-namespace:Chord_Generator.Enums"
-    xmlns:extensions="clr-namespace:Chord_Generator.Extensions"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     prism:ViewModelLocator.AutoWireViewModel="True">
 
@@ -103,7 +103,7 @@
                 Style="{DynamicResource MaterialDesignTitleTextBlock}"
                 Text="{Binding ActiveChord}" />
         </materialDesign:Card>
-        
+
         <materialDesign:Card
             Grid.Column="2"
             Grid.ColumnSpan="2"
@@ -125,23 +125,33 @@
             Grid.Column="2"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <ComboBox ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type local:PlayBackSpeed}}}"
-                      Width="200"
-                      Margin="15"
-                      Height="30"
-                      Foreground="White"/>
+            <ComboBox
+                Width="200"
+                Height="30"
+                Margin="15"
+                ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type local:PlayBackSpeed}}}"
+                SelectedIndex="1" />
+            <ComboBox
+                Width="200"
+                Height="30"
+                Margin="15"
+                ItemsSource="{Binding ChordRunLists}"
+                Foreground="Black"
+                DisplayMemberPath="Title"
+                SelectedItem="{Binding SelectedRunList}"/>
         </StackPanel>
 
-        <Image Grid.Column="1"
-               Grid.Row="2"
-               Source="{Binding ActiveImageSource}"/>
+        <Image
+            Grid.Row="2"
+            Grid.Column="1"
+            Source="{Binding ActiveImageSource}" />
 
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <Button Content="Start" 
-                    Style="{StaticResource ActionButtonStyle}" 
-                    Command="{Binding StartCommand}"/>
-            <TextBlock Style="{StaticResource TimerStyle}"
-                       Text="{Binding Timer}" />
+            <Button
+                Command="{Binding StartCommand}"
+                Content="Start"
+                Style="{StaticResource ActionButtonStyle}" />
+            <TextBlock Style="{StaticResource TimerStyle}" Text="{Binding Timer}" />
         </StackPanel>
     </Grid>
 </UserControl>
