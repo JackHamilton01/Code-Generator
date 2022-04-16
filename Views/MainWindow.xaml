@@ -5,11 +5,17 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
-    Width="800"
+    Width="900"
     Height="750"
     Background="{DynamicResource MaterialDesignDarkBackground}"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="1"/>
+        <ContentControl prism:RegionManager.RegionName="NavigationRegion" />
     </Grid>
 </Window>

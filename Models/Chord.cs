@@ -17,5 +17,11 @@ namespace Chord_Generator.Models
             ChordName = chordName;
             ImagePath = imagePath;
         }
+
+        // Parameterless constrcutor for serialisation
+        public Chord()
+        {
+                
+        }
     }
 }

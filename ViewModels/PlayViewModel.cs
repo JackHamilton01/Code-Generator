@@ -18,28 +18,34 @@ namespace Chord_Generator.ViewModels
         public string NextActiveChord { get; set; }
 
         public List<Chord> ChordList { get; set; }
+        public ObservableCollection<ChordRunList> ChordRunLists { get; set; }
+        public ChordRunList SelectedRunList { get; set; }
 
         public DelegateCommand StartCommand { get; set; }
 
-        private Chords chords;
+        private ChordsService chordsService;
         private AudioService audioService;
+        private Settings settings;
 
         public PlayViewModel()
         {
-            chords = new Chords();
+            chordsService = new ChordsService();
             audioService = new AudioService();
+            settings = new Settings();
 
             StartCommand = new DelegateCommand(Start);
-            ChordList = chords.CreateRandomiseChordList();
+            ChordList = chordsService.CreateRandomisedChordList().Chords;
+            ChordRunLists = new ObservableCollection<ChordRunList>(settings.GetRunList());
+            ChordRunLists.Add(chordsService.CreateRandomisedChordList());
 
             ActiveChord = ChordList.FirstOrDefault().ChordName;
             ActiveImageSource = ChordList.FirstOrDefault().ImagePath;
             NextActiveChord = ChordList[1].ChordName;
-
         }
 
         private async void Start()
         {
+            ChordList = chordsService.GetChords(SelectedRunList);
             await audioService.PlayAudio();
 
             foreach (var chord in ChordList)
@@ -47,13 +53,13 @@ namespace Chord_Generator.ViewModels
                 ActiveChord = chord.ChordName;
                 ActiveImageSource = chord.ImagePath;
 
-                NextActiveChord = chords.GetNextActiveChordName(chord, ChordList);
+                NextActiveChord = chordsService.GetNextActiveChordName(chord, ChordList);
                 await Task.Delay(5500);
             }
 
             await audioService.StopAudio();
 
-            ChordList = chords.CreateRandomiseChordList();
+            ChordList = chordsService.CreateRandomisedChordList().Chords;
         }
     }
 }

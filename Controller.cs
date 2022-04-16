@@ -28,11 +28,14 @@ namespace Chord_Generator
             //unityContainer.RegisterType<IXMLSerialization, XMLSerialization>();
 
             _regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(PlayView));
+            _regionManager.RegisterViewWithRegion(RegionNames.NavigationRegion, typeof(NavigationView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<PlayView, PlayViewModel>();
+            containerRegistry.RegisterForNavigation<NavigationView, NavigationViewModel>();
+            containerRegistry.RegisterForNavigation<RunListSettingsView, RunListSettingsViewModel>();
         }
     }
 }

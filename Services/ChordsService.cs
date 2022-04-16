@@ -2,6 +2,7 @@
 using Chord_Generator.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Chord_Generator.Services
 {
-    public class Chords
+    public class ChordsService
     {
         private string imageFolder = @"\Images\";
 
-        private List<Chord> CreateChords()
+        public List<Chord> CreateChords()
         {
             return new List<Chord>()
             {
@@ -35,7 +36,7 @@ namespace Chord_Generator.Services
             };
         }
 
-        public List<Chord> CreateRandomiseChordList()
+        public ChordRunList CreateRandomisedChordList()
         {
             var ranodm = new Random();
             List<Chord> chordsList = CreateChords();
@@ -48,7 +49,8 @@ namespace Chord_Generator.Services
                 randomisedChords.Add(chord);
             }
 
-            return randomisedChords;
+            ChordRunList randomChordRunList = new ChordRunList(randomisedChords, "Random");
+            return randomChordRunList;
         }
 
         public string GetImageSource(string imageName)
@@ -67,6 +69,18 @@ namespace Chord_Generator.Services
             else
             {
                 return chordList[nextActiveChordIndex + 1].ChordName;
+            }
+        }
+
+        public List<Chord> GetChords(ChordRunList chordRunList)
+        {
+            if (chordRunList is null)
+            {
+                return CreateRandomisedChordList().Chords;
+            }
+            else
+            {
+                return chordRunList.Chords.ToList();
             }
         }
     }
