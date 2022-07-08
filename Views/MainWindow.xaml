@@ -2,20 +2,21 @@
     x:Class="Chord_Generator.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:chordGenerator="clr-namespace:Chord_Generator"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
-    Width="900"
+    Width="1000"
     Height="750"
-    Background="{DynamicResource MaterialDesignDarkBackground}"
-    prism:ViewModelLocator.AutoWireViewModel="True">
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="{DynamicResource MaterialDesignDarkBackground}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="1"/>
-        <ContentControl prism:RegionManager.RegionName="NavigationRegion" />
+
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{x:Static chordGenerator:RegionNames.ContentRegion}" />
+        <ContentControl prism:RegionManager.RegionName="{x:Static chordGenerator:RegionNames.NavigationRegion}" />
     </Grid>
 </Window>

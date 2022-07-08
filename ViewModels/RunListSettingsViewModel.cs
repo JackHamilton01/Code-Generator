@@ -20,13 +20,13 @@ namespace Chord_Generator.Views
         public DelegateCommand<Chord> AddToRunListCommand { get; set; }
         public DelegateCommand SaveCommand { get; set; }
 
-        private ChordsService chordsService;
-        private Settings settings;
+        private IChordsService chordsService;
+        private ISettings settings;
 
-        public RunListSettingsViewModel()
+        public RunListSettingsViewModel(IChordsService chordsService, ISettings settings)
         {
-            chordsService = new ChordsService();
-            settings = new Settings();
+            this.chordsService = chordsService;
+            this.settings = settings;
 
             AddToRunListCommand = new DelegateCommand<Chord>(AddToRunList);
             SaveCommand = new DelegateCommand(Save);

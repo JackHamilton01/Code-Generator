@@ -1,4 +1,5 @@
-﻿using Chord_Generator.Views;
+﻿using Chord_Generator.Enums;
+using Chord_Generator.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -25,11 +26,11 @@ namespace Chord_Generator.ViewModels
 
         private void Navigate(string navigationDestination)
         {
-            if (navigationDestination == "Home")
+            if (navigationDestination == NavigationItem.Home.ToString())
             {
                 _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(PlayView));
             }
-            else if (navigationDestination == "RunListSettings")
+            else if (navigationDestination == NavigationItem.RunListSettings.ToString())
             {
                 _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(RunListSettingsView));
             }

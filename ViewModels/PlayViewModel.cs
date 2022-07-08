@@ -2,6 +2,7 @@
 using Chord_Generator.Services;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Chord_Generator.ViewModels
 {
-    public class PlayViewModel : BindableBase
+    public class PlayViewModel : BindableBase, INavigationAware
     {
         public string ActiveChord { get; set; }
         public string ActiveImageSource { get; set; }
@@ -23,20 +24,19 @@ namespace Chord_Generator.ViewModels
 
         public DelegateCommand StartCommand { get; set; }
 
-        private ChordsService chordsService;
-        private AudioService audioService;
-        private Settings settings;
+        private IChordsService chordsService;
+        private IAudioService audioService;
+        private ISettings settings;
 
-        public PlayViewModel()
+        public PlayViewModel(IChordsService chordsService, IAudioService audioService, ISettings settings)
         {
-            chordsService = new ChordsService();
-            audioService = new AudioService();
-            settings = new Settings();
+            this.chordsService = chordsService;
+            this.audioService = audioService;
+            this.settings = settings;
 
             StartCommand = new DelegateCommand(Start);
             ChordList = chordsService.CreateRandomisedChordList().Chords;
-            ChordRunLists = new ObservableCollection<ChordRunList>(settings.GetRunList());
-            ChordRunLists.Add(chordsService.CreateRandomisedChordList());
+            UpdateChordRunList();
 
             ActiveChord = ChordList.FirstOrDefault().ChordName;
             ActiveImageSource = ChordList.FirstOrDefault().ImagePath;
@@ -58,8 +58,27 @@ namespace Chord_Generator.ViewModels
             }
 
             await audioService.StopAudio();
-
             ChordList = chordsService.CreateRandomisedChordList().Chords;
+        }
+
+        private void UpdateChordRunList()
+        {
+            ChordRunLists = new ObservableCollection<ChordRunList>(settings.GetRunList());
+            ChordRunLists.Add(chordsService.CreateRandomisedChordList());
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            UpdateChordRunList();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
         }
     }
 }

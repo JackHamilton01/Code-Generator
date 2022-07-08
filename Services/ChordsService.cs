@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Chord_Generator.Services
 {
-    public class ChordsService
+    public class ChordsService : IChordsService
     {
         private string imageFolder = @"\Images\";
 
@@ -38,19 +38,9 @@ namespace Chord_Generator.Services
 
         public ChordRunList CreateRandomisedChordList()
         {
-            var ranodm = new Random();
-            List<Chord> chordsList = CreateChords();
-            List<Chord> randomisedChords = new List<Chord>();
-
-            var randomizedChords = chordsList.OrderBy(item => ranodm.Next());
-
-            foreach (var chord in randomizedChords)
-            {
-                randomisedChords.Add(chord);
-            }
-
-            ChordRunList randomChordRunList = new ChordRunList(randomisedChords, "Random");
-            return randomChordRunList;
+            var random = new Random();
+            var randomizedChords = CreateChords().OrderBy(item => random.Next()).ToList();
+            return new ChordRunList(randomizedChords, "Random");
         }
 
         public string GetImageSource(string imageName)
@@ -61,27 +51,12 @@ namespace Chord_Generator.Services
         public string GetNextActiveChordName(Chord chord, List<Chord> chordList)
         {
             int nextActiveChordIndex = chordList.IndexOf(chord);
-
-            if (chord == chordList.Last())
-            {
-                return string.Empty;
-            }
-            else
-            {
-                return chordList[nextActiveChordIndex + 1].ChordName;
-            }
+            return chord == chordList.Last() ? string.Empty : chordList[nextActiveChordIndex + 1].ChordName;
         }
 
         public List<Chord> GetChords(ChordRunList chordRunList)
         {
-            if (chordRunList is null)
-            {
-                return CreateRandomisedChordList().Chords;
-            }
-            else
-            {
-                return chordRunList.Chords.ToList();
-            }
+            return chordRunList is null ? CreateRandomisedChordList().Chords : chordRunList.Chords.ToList();
         }
     }
 }
