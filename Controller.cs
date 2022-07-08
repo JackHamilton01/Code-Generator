@@ -1,4 +1,5 @@
-﻿using Chord_Generator.ViewModels;
+﻿using Chord_Generator.Services;
+using Chord_Generator.ViewModels;
 using Chord_Generator.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -25,7 +26,9 @@ namespace Chord_Generator
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            //unityContainer.RegisterType<IXMLSerialization, XMLSerialization>();
+            unityContainer.RegisterType<ISettings, Settings>();
+            unityContainer.RegisterType<IChordsService, ChordsService>();
+            unityContainer.RegisterType<IAudioService, AudioService>();
 
             _regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(PlayView));
             _regionManager.RegisterViewWithRegion(RegionNames.NavigationRegion, typeof(NavigationView));

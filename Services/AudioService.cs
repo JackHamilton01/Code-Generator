@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chord_Generator.Services
 {
-    public class AudioService
+    public class AudioService : IAudioService
     {
         private string audioFolder = @"\Audio\";
         private string trainingBeatFileName = "TrainingBeatShort.WAV";
